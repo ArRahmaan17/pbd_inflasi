@@ -29,8 +29,11 @@
     <script>
         var typed = new Typed("#app_title", {
             strings: ["", "TPID", "Tim Pengendalian Inflasi Daerah"],
-            typeSpeed: 50,
+            typeSpeed: 100,
             startDelay: 500,
+            backSpeed: 60,
+            backDelay: 700,
+            loop: true
         });
         $('#vmap').vectorMap({
             map: 'indonesia_id',
