@@ -18,6 +18,13 @@
             </div>
             <div class="menu-item">
                 <a href="{{ route('home') }}" class="menu-link text-black position-relative">
+                    <span class="menu-title">Komoditas</span>
+                    <span
+                        class="d-none position-absolute h-2px bottom-0 end-0 start-0 bg-success translate rounded"></span>
+                </a>
+            </div>
+            <div class="menu-item">
+                <a href="{{ route('home') }}" class="menu-link text-black position-relative">
                     <span class="menu-title">Susunan Jabatan</span>
                     <span
                         class="d-none position-absolute h-2px bottom-0 end-0 start-0 bg-success translate rounded"></span>
@@ -26,6 +33,13 @@
             <div class="menu-item">
                 <a href="{{ route('home') }}" class="menu-link text-black position-relative">
                     <span class="menu-title">Berita</span>
+                    <span
+                        class="d-none position-absolute h-2px bottom-0 end-0 start-0 bg-success translate rounded"></span>
+                </a>
+            </div>
+            <div class="menu-item">
+                <a href="{{ route('home') }}" class="menu-link text-black position-relative">
+                    <span class="menu-title">Aduan</span>
                     <span
                         class="d-none position-absolute h-2px bottom-0 end-0 start-0 bg-success translate rounded"></span>
                 </a>
