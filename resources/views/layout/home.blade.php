@@ -1,6 +1,7 @@
 @extends('app')
 @push('css')
     <link rel="stylesheet" href="{{ asset('assets/css/jquery-jvectormap-2.0.5.css') }}" />
+    <link href="{{ asset('assets/plugins/custom/vis-timeline/vis-timeline.bundle.css') }}" rel="stylesheet" type="text/css" />
 @endpush
 @section('content')
     <div class="container-fluid row justify-content-beetwen">
@@ -18,6 +19,12 @@
         </div>
         <div class="col-12 col-md-6 mt-5">
             <div id="vmap" style="width: 100%; height: 300px ;"></div>
+        </div>
+    </div>
+    <div class="container">
+        <h3>Monitor Harga Bahan Baku</h3>
+        <div class="card card-flush">
+            <div id="visualization"></div>
         </div>
     </div>
     <div class="separator my-5"></div>
@@ -65,7 +72,54 @@
     <script src="{{ asset('assets/plugins/custom/typedjs/typedjs.bundle.js') }}"></script>
     <script src="{{ asset('assets/js/jquery-jvectormap-2.0.5.min.js') }}"></script>
     <script src="{{ asset('assets/maps/jquery.vmap.indonesia.js') }}"></script>
+    <script src="{{ asset('assets/plugins/custom/vis-timeline/vis-timeline.bundle.js') }}"></script>
     <script>
+        var container = document.getElementById('visualization');
+
+        // Create a DataSet (allows two way data-binding)
+        var items = new vis.DataSet([{
+                id: 1,
+                content: 'item 1',
+                start: '2014-04-20'
+            },
+            {
+                id: 2,
+                content: 'item 2',
+                start: '2014-04-14'
+            },
+            {
+                id: 3,
+                content: 'item 3',
+                start: '2014-04-18'
+            },
+            {
+                id: 4,
+                content: 'item 4',
+                start: '2014-04-16',
+            },
+            {
+                id: 5,
+                content: 'item 5',
+                start: '2014-04-25'
+            },
+            {
+                id: 6,
+                content: 'item 6',
+                start: '2014-04-27',
+            }
+        ]);
+
+        // Configuration for the Timeline
+        var options = {
+            width: '100%',
+            height: '200px',
+            margin: {
+                item: 1
+            }
+        };
+
+        // Create a Timeline
+        var timeline = new vis.Timeline(container, items, options);
         var typed = new Typed("#app_title", {
             strings: ["", "TPID", "Tim Pengendalian Inflasi Daerah"],
             typeSpeed: 100,

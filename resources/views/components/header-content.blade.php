@@ -7,21 +7,19 @@
             data-kt-swapper="true" data-kt-swapper-mode="prepend"
             data-kt-swapper-parent="{default: '#kt_content_container', lg: '#kt_header_container'}">
 
-            <h1 class="text-dark fw-bold my-0 fs-2">Dashboard</h1>
+            <h1 class="text-gray-800 fw-bold my-0 fs-2">Dashboard</h1>
 
-            <ul class="breadcrumb breadcrumb-line text-muted fw-bold fs-base my-1">
-                <li class="breadcrumb-item text-muted">
-                    <a href="../dist/index.html" class="text-muted">Home</a>
+            <ul class="breadcrumb breadcrumb-line text-gray-600 fw-bold fs-base my-1">
+                <li class="breadcrumb-item text-gray-600">
+                    <a href="../dist/index.html" class="text-gray-600">Home</a>
                 </li>
-                <li class="breadcrumb-item text-dark">Dashboard</li>
+                <li class="breadcrumb-item text-gray-800">Dashboard</li>
             </ul>
 
         </div>
 
         <div class="d-flex d-lg-none align-items-center ms-n2 me-2">
-
             <div class="btn btn-icon btn-active-icon-primary" id="kt_aside_toggle">
-
                 <span class="svg-icon svg-icon-2x">
                     <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"
                         fill="none">
@@ -32,29 +30,23 @@
                             fill="black" />
                     </svg>
                 </span>
-
             </div>
-
             <a href="../dist/index.html" class="d-flex align-items-center">
                 <img alt="Logo" src="assets/media/logos/logo-default.svg" class="h-40px" />
             </a>
-
         </div>
-        @if (session('auth'))
+        @auth
             <div class="d-flex flex-shrink-0">
-
                 <div class="d-flex ms-3">
                     <a href="#" class="btn bg-body btn-color-gray-600 btn-active-info" tooltip="New Member"
                         data-bs-toggle="modal" data-bs-target="#kt_modal_invite_friends">New User</a>
                 </div>
-
                 <div class="d-flex ms-3">
                     <a href="#" class="btn btn-info" tooltip="New App" data-bs-toggle="modal"
                         data-bs-target="#kt_modal_create_app" id="kt_toolbar_primary_button">New
                         Goal</a>
                 </div>
-
             </div>
-        @endif
+        @endauth
     </div>
 </div>
