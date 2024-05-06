@@ -19,7 +19,7 @@ return new class extends Migration
             $table->enum('type', [
                 'pu_news',
                 'pu_announcement',
-                'pr_new',
+                'pr_news',
                 'pr_announcement'
             ])->default('pu_news');
             $table->string('photo')->default('assets/media/misc/city.png');

@@ -19,11 +19,15 @@
 </head>
 
 <body id="kt_body" class="header-fixed header-tablet-and-mobile-fixed aside-fixed aside-secondary-enabled"
-    data-kt-aside-minimize="on">
+    data-kt-aside-minimize="on" data-kt-app-page-loading-enabled="true" data-kt-app-page-loading="on">
+    <div class="page-loader">
+        <span class="spinner-border text-primary" role="status"></span>
+        &nbsp;
+        <span class="text-grey-300">Memuat Halaman...</span>
+    </div>
     <script>
         var defaultThemeMode = "light";
         var themeMode;
-
         if (document.documentElement) {
             if (document.documentElement.hasAttribute("data-bs-theme-mode")) {
                 themeMode = document.documentElement.getAttribute("data-bs-theme-mode");
@@ -309,11 +313,8 @@
                                                 data-bs-boundary="window" data-bs-placement="top" title="Jan Hummer">
                                                 <img src="assets/media/avatars/150-6.jpg" alt="img" />
                                             </div>
-
                                         </div>
-
                                     </div>
-
                                     <div class="overflow-auto pb-5">
                                         <div
                                             class="d-flex align-items-center border border-dashed border-gray-300 rounded min-w-700px p-5">
@@ -370,15 +371,10 @@
 
                                         </div>
                                     </div>
-
                                 </div>
-
                             </div>
-
                             <div class="timeline-item">
-
                                 <div class="timeline-line w-40px"></div>
-
                                 <div class="timeline-icon symbol symbol-circle symbol-40px">
                                     <div class="symbol-label bg-light">
 
@@ -396,11 +392,8 @@
 
                                     </div>
                                 </div>
-
                                 <div class="timeline-content mb-10 mt-n1">
-
                                     <div class="pe-3 mb-5">
-
                                         <div class="fs-5 fw-bold mb-2">Task
                                             <a href="#" class="text-primary fw-bolder me-1">#45890</a>merged
                                             with
@@ -408,23 +401,16 @@
                                             Pro
                                             Admin Dashboard project:
                                         </div>
-
                                         <div class="d-flex align-items-center mt-1 fs-6">
-
                                             <div class="text-muted me-2 fs-7">Initiated at 4:23 PM by</div>
-
                                             <div class="symbol symbol-circle symbol-25px" data-bs-toggle="tooltip"
                                                 data-bs-boundary="window" data-bs-placement="top"
                                                 title="Nina Nilson">
                                                 <img src="assets/media/avatars/150-11.jpg" alt="img" />
                                             </div>
-
                                         </div>
-
                                     </div>
-
                                 </div>
-
                             </div>
 
                             <div class="timeline-item">
@@ -2045,32 +2031,38 @@
             </span>
 
         </div>
+    </div>
+    <script>
+        var hostUrl = "assets/";
+    </script>
 
-        <script>
-            var hostUrl = "assets/";
-        </script>
+    <script src="{{ asset('assets/plugins/global/plugins.bundle.js') }}"></script>
+    <script src="{{ asset('assets/js/scripts.bundle.js') }}"></script>
 
-        <script src="{{ asset('assets/plugins/global/plugins.bundle.js') }}"></script>
-        <script src="{{ asset('assets/js/scripts.bundle.js') }}"></script>
+    <script src="{{ asset('assets/plugins/custom/prismjs/prismjs.bundle.js') }}"></script>
 
-        <script src="{{ asset('assets/plugins/custom/prismjs/prismjs.bundle.js') }}"></script>
+    <script src="{{ asset('assets/js/custom/widgets.js') }}"></script>
+    <script>
+        moment.locale('id');
+        var target = document.querySelector("body");
+        var blockUI = new KTBlockUI(target, {
+            overlayClass: "bg-dark bg-opacity-50",
+            message: '<div class="blockui-message text-white"><span class="spinner-border text-white"></span> Loading Data...</div>'
+        });
 
-        <script src="{{ asset('assets/js/custom/widgets.js') }}"></script>
-        <script>
-            var target = document.querySelector("body");
-            var blockUI = new KTBlockUI(target, {
-                overlayClass: "bg-dark bg-opacity-50",
-            });
+        function blockUi() {
+            blockUI.block();
+        }
 
-            function blockUi() {
-                blockUI.block();
-            }
-
-            function releaseUi() {
-                blockUI.release();
-            }
-        </script>
-        @stack('js')
+        function releaseUi() {
+            blockUI.release();
+        }
+        $(function() {
+            KTApp.hidePageLoading();
+            document.querySelector('.page-loader').remove();
+        });
+    </script>
+    @stack('js')
 </body>
 
 </html>

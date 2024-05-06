@@ -67,7 +67,8 @@
         <div class="card bg-transparent row flex-row justify-content-between py-5 rounded-0">
             <div class="col-12 col-sm-6 col-md-4 mt-2 mt-sm-1">
                 <div class="card card-stretch-50 card-flush">
-                    <img src="assets/media/misc/city.png" class="card-img-top" alt="...">
+                    <img src="{{ asset('assets/plugins/custom/jstree/throbber.gif') }}"
+                        data-src="assets/media/misc/city.png" class="card-img-top lozad" alt="...">
                     <div class="card-body">
                         Lorem Ipsum is simply dummy text
                     </div>
@@ -78,7 +79,8 @@
             </div>
             <div class="col-12 col-sm-6 col-md-4 mt-2 mt-sm-1">
                 <div class="card card-stretch-50 card-flush">
-                    <img src="assets/media/misc/city.png" class="card-img-top" alt="...">
+                    <img src="{{ asset('assets/plugins/custom/jstree/throbber.gif') }}"
+                        data-src="assets/media/misc/city.png" class="card-img-top lozad" alt="...">
                     <div class="card-body">
                         Lorem Ipsum is simply dummy text
                     </div>
@@ -89,7 +91,8 @@
             </div>
             <div class="col-12 col-sm-6 col-md-4 mt-2 mt-sm-1">
                 <div class="card card-stretch-50 card-flush">
-                    <img src="assets/media/misc/city.png" class="card-img-top" alt="...">
+                    <img src="{{ asset('assets/plugins/custom/jstree/throbber.gif') }}"
+                        data-src="assets/media/misc/city.png" class="card-img-top lozad" alt="...">
                     <div class="card-body">
                         Lorem Ipsum is simply dummy text
                     </div>
@@ -101,7 +104,7 @@
         </div>
         <div class="text-center">
             <div class="col">
-                <a href="{{ route('home') }}"
+                <a href="{{ route('news') }}"
                     class="btn btn-outline btn-outline-dashed btn-outline-success btn-active-light-success hover-scale">Tampilkan
                     Lebih Banyak</a>
             </div>
@@ -115,37 +118,35 @@
     <script src="{{ asset('assets/plugins/custom/vis-timeline/vis-timeline.bundle.js') }}"></script>
     <script>
         var container = document.getElementById('visualization');
-
-        // Create a DataSet (allows two way data-binding)
         var items = new vis.DataSet([{
                 id: 1,
                 content: 'item 1',
-                start: '2024-05-1 06:00:00'
+                start: '2024-05-01'
             },
             {
                 id: 2,
                 content: 'item 2',
-                start: '2024-05-4 06:00:00'
+                start: '2024-05-04'
             },
             {
                 id: 3,
                 content: 'item 3',
-                start: '2024-05-8 06:00:00'
+                start: '2024-05-08'
             },
             {
                 id: 4,
                 content: 'item 4',
-                start: '2024-05-6 06:00:00',
+                start: '2024-05-06',
             },
             {
                 id: 5,
                 content: 'item 5',
-                start: '2024-05-5 06:00:00'
+                start: '2024-05-05'
             },
             {
                 id: 6,
                 content: 'item 6',
-                start: '2024-05-7 06:00:00',
+                start: '2024-05-07',
             }
         ]);
 
@@ -157,7 +158,6 @@
             }
         };
 
-        // Create a Timeline
         var timeline = new vis.Timeline(container, items, options);
         var typed = new Typed("#app_title", {
             strings: ["", "TPID", "Tim Pengendalian Inflasi Daerah"],
