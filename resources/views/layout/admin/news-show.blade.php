@@ -21,8 +21,9 @@
                         <div class="position-absolute bottom-0 end-0 start-0 translate-middle-y px-2">
                             <div class="w-lg-50 position-relative">
                                 <input type="text" class="form-control form-control-solid" minlength="3" maxlength="4"
-                                    placeholder="Beri Komentar...." name="card_cvv" />
-                                <div class="position-absolute translate-middle-y top-50 end-0 me-3" style="cursor:pointer;">
+                                    placeholder="Beri Komentar...." name="comment" />
+                                <div class="position-absolute translate-middle-y bottom-0 end-0 me-3"
+                                    style="cursor:pointer;">
                                     <i class="fas fa-share fs-4 text-grey-800 hover-scale"></i>
                                 </div>
                             </div>
