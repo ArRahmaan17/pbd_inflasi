@@ -18,7 +18,8 @@
     @stack('css')
 </head>
 
-<body id="kt_body" class="header-fixed header-tablet-and-mobile-fixed aside-fixed aside-secondary-enabled">
+<body id="kt_body" class="header-fixed header-tablet-and-mobile-fixed aside-fixed aside-secondary-enabled"
+    data-kt-aside-minimize="on">
     <script>
         var defaultThemeMode = "light";
         var themeMode;
@@ -44,7 +45,7 @@
     <div class="d-flex flex-column flex-root">
         <div class="page d-flex flex-row flex-column-fluid">
             @auth
-                <div id="kt_aside" class="aside aside-extended bg-white" data-kt-drawer="true" data-kt-drawer-name="aside"
+                <div id="kt_aside" class="aside aside-extended bg-dark" data-kt-drawer="true" data-kt-drawer-name="aside"
                     data-kt-drawer-activate="{default: true, lg: false}" data-kt-drawer-overlay="true"
                     data-kt-drawer-width="auto" data-kt-drawer-direction="start" data-kt-drawer-toggle="#kt_aside_toggle">
                     @include('components.navbar')
@@ -203,34 +204,24 @@
                                                 <span class="badge badge-light text-muted">CRM System
                                                     Development</span>
                                             </div>
-
                                             <div class="symbol-group symbol-hover flex-nowrap flex-grow-1 min-w-100px">
-
                                                 <div class="symbol symbol-circle symbol-25px">
                                                     <img src="assets/media/avatars/150-5.jpg" alt="img" />
                                                 </div>
-
                                                 <div class="symbol symbol-circle symbol-25px">
                                                     <div
                                                         class="symbol-label fs-8 fw-bold bg-success text-inverse-primary">
                                                         B</div>
                                                 </div>
-
                                             </div>
-
                                             <div class="min-w-125px">
                                                 <span class="badge badge-light-success">Completed</span>
                                             </div>
-
                                             <a href="#"
                                                 class="btn btn-sm btn-light btn-active-light-primary">View</a>
-
                                         </div>
-
                                     </div>
-
                                 </div>
-
                             </div>
 
                             <div class="timeline-item">

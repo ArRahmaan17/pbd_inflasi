@@ -22,17 +22,50 @@
         </div>
     </div>
     <div class="container">
-        <h3>Monitor Harga Bahan Baku</h3>
+        <div class="d-flex my-3 align-items-center">
+            <div class="col-12 col-md-8">
+                <h2>Monitor Harga Bahan Baku</h2>
+            </div>
+            <div class="col-12 col-md-4">
+                <div class="row g-3 align-items-end">
+                    <div class="col-6">
+                        <div class="row g-2">
+                            <div class="col-12 mx-1">
+                                <div class="form-check">
+                                    <input class="form-check-input" type="checkbox" value="" id="regency_filter" />
+                                    <label class="form-check-label" for="regency_filter">
+                                        Kabupaten
+                                    </label>
+                                </div>
+                            </div>
+                            <div class="col-12">
+                                <select class="form-select" data-control="select2" data-placeholder="Pilih Bahan Baku">
+                                    <option></option>
+                                    <option value="1">One</option>
+                                    <option value="2">Two</option>
+                                    <option value="3">Three</option>
+                                </select>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-6">
+                        <button
+                            class="btn btn-icon btn-outline btn-outline-dashed btn-outline-success btn-active-light-success hover-scale"><i
+                                class="fas fa-search"></i></button>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="separator border-3 my-3"></div>
         <div class="card card-flush">
             <div id="visualization"></div>
         </div>
     </div>
-    <div class="separator my-5"></div>
-    <div class="container">
-        <h3>Berita Terkini</h3>
+    <div class="container my-5">
+        <h2>Berita Terkini</h2>
         <div class="separator border-3 my-3"></div>
         <div class="card bg-transparent row flex-row justify-content-between py-5 rounded-0">
-            <div class="col-12 col-sm-6 col-md-4 mt-1 mt-sm-0">
+            <div class="col-12 col-sm-6 col-md-4 mt-2 mt-sm-1">
                 <div class="card card-stretch-50 card-flush">
                     <img src="assets/media/misc/city.png" class="card-img-top" alt="...">
                     <div class="card-body">
@@ -43,7 +76,7 @@
                     </div>
                 </div>
             </div>
-            <div class="col-12 col-sm-6 col-md-4 mt-1 mt-sm-0">
+            <div class="col-12 col-sm-6 col-md-4 mt-2 mt-sm-1">
                 <div class="card card-stretch-50 card-flush">
                     <img src="assets/media/misc/city.png" class="card-img-top" alt="...">
                     <div class="card-body">
@@ -54,7 +87,7 @@
                     </div>
                 </div>
             </div>
-            <div class="col-12 col-sm-6 col-md-4 mt-1 mt-sm-0">
+            <div class="col-12 col-sm-6 col-md-4 mt-2 mt-sm-1">
                 <div class="card card-stretch-50 card-flush">
                     <img src="assets/media/misc/city.png" class="card-img-top" alt="...">
                     <div class="card-body">
@@ -64,6 +97,13 @@
                         Footer
                     </div>
                 </div>
+            </div>
+        </div>
+        <div class="text-center">
+            <div class="col">
+                <a href="{{ route('home') }}"
+                    class="btn btn-outline btn-outline-dashed btn-outline-success btn-active-light-success hover-scale">Tampilkan
+                    Lebih Banyak</a>
             </div>
         </div>
     </div>
@@ -80,39 +120,38 @@
         var items = new vis.DataSet([{
                 id: 1,
                 content: 'item 1',
-                start: '2014-04-20'
+                start: '2024-05-1 06:00:00'
             },
             {
                 id: 2,
                 content: 'item 2',
-                start: '2014-04-14'
+                start: '2024-05-4 06:00:00'
             },
             {
                 id: 3,
                 content: 'item 3',
-                start: '2014-04-18'
+                start: '2024-05-8 06:00:00'
             },
             {
                 id: 4,
                 content: 'item 4',
-                start: '2014-04-16',
+                start: '2024-05-6 06:00:00',
             },
             {
                 id: 5,
                 content: 'item 5',
-                start: '2014-04-25'
+                start: '2024-05-5 06:00:00'
             },
             {
                 id: 6,
                 content: 'item 6',
-                start: '2014-04-27',
+                start: '2024-05-7 06:00:00',
             }
         ]);
 
-        // Configuration for the Timeline
         var options = {
             width: '100%',
-            height: '200px',
+            height: '300px',
             margin: {
                 item: 1
             }
