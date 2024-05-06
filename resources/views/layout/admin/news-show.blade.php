@@ -1,9 +1,35 @@
 @extends('app')
 @section('content')
     <div class="container-fluid my-5">
-        <h1>Berita Terkini</h1>
-        <div class="separator border-3 my-3"></div>
-        <div class="card bg-transparent row flex-row justify-content-between py-5 rounded-0" id="news-container">
+        <div class="card mb-3 shadow-none bg-transparent m-0">
+            <div class="card-body p-0">
+                <div class="row justify-content-between">
+                    <div class="col-8">
+                        <img src="{{ asset($news->photo) }}" style="max-height: 300px; object-fit:contain" class="card-img-top"
+                            alt="{{ $news->photo }}">
+                        <h5 class="card-title">{{ $news->title }}</h5>
+                        <div class="separator my-3"></div>
+                        <p class="card-text">{{ $news->content }}</p>
+                    </div>
+                    <div class="col-4 bg-opacity-50 bg-white rounded p-3 position-relative">
+                        <p class="card-text text-capitalize">Ditulis pada {{ $news->updated_at }} oleh
+                        <div class="text-body-secondary text-lowercase">{{ $news->user->name ?? $news->user->email }}</div>
+                        </p>
+                        <div class="separator my-3"></div>
+                        <div class="row">
+                        </div>
+                        <div class="position-absolute bottom-0 end-0 start-0 translate-middle-y px-2">
+                            <div class="w-lg-50 position-relative">
+                                <input type="text" class="form-control form-control-solid" minlength="3" maxlength="4"
+                                    placeholder="Beri Komentar...." name="card_cvv" />
+                                <div class="position-absolute translate-middle-y top-50 end-0 me-3" style="cursor:pointer;">
+                                    <i class="fas fa-share fs-4 text-grey-800 hover-scale"></i>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
         </div>
     </div>
 @endsection

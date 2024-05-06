@@ -54,8 +54,7 @@
                     data-kt-drawer-width="auto" data-kt-drawer-direction="start" data-kt-drawer-toggle="#kt_aside_toggle">
                     @include('components.navbar')
                     @include('components.navbar-2')
-                </div>
-            @endauth
+            </div> @endauth
             @auth
                 <div class="wrapper d-flex flex-column flex-row-fluid" id="kt_wrapper">
                 @endauth
@@ -72,8 +71,7 @@
                         <div class="container-fluid" id="kt_content_container">
                             @yield('content')
                         </div>
-                    </div>
-                    @include('components.footer')
+                    </div> @include('components.footer')
                 </div>
             </div>
         </div>
@@ -89,7 +87,6 @@
                     <div class="card-toolbar">
                         <button type="button" class="btn btn-sm btn-icon btn-active-light-primary me-n5"
                             id="kt_activities_close">
-
                             <span class="svg-icon svg-icon-1">
                                 <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24"
                                     viewBox="0 0 24 24" fill="none">
@@ -99,7 +96,6 @@
                                         transform="rotate(45 7.41422 6)" fill="black" />
                                 </svg>
                             </span>
-
                         </button>
                     </div>
                 </div>
@@ -149,7 +145,8 @@
                                             <div class="symbol symbol-circle symbol-25px" data-bs-toggle="tooltip"
                                                 data-bs-boundary="window" data-bs-placement="top"
                                                 title="Nina Nilson">
-                                                <img src="assets/media/avatars/150-11.jpg" alt="img" />
+                                                <img src="{{ asset('assets/media/avatars/150-11.jpg') }}"
+                                                    alt="img" />
                                             </div>
 
                                         </div>
@@ -177,7 +174,8 @@
                                                 </div>
 
                                                 <div class="symbol symbol-circle symbol-25px">
-                                                    <img src="assets/media/avatars/150-11.jpg" alt="img" />
+                                                    <img src="{{ asset('assets/media/avatars/150-11.jpg') }}"
+                                                        alt="img" />
                                                 </div>
 
                                                 <div class="symbol symbol-circle symbol-25px">
@@ -220,8 +218,7 @@
                                             </div>
                                             <div class="min-w-125px">
                                                 <span class="badge badge-light-success">Completed</span>
-                                            </div>
-                                            <a href="#"
+                                            </div> <a href="#"
                                                 class="btn btn-sm btn-light btn-active-light-primary">View</a>
                                         </div>
                                     </div>
@@ -229,12 +226,9 @@
                             </div>
 
                             <div class="timeline-item">
-
                                 <div class="timeline-line w-40px"></div>
-
                                 <div class="timeline-icon symbol symbol-circle symbol-40px">
                                     <div class="symbol-label bg-light">
-
                                         <span class="svg-icon svg-icon-2 svg-icon-gray-500">
                                             <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24"
                                                 viewBox="0 0 24 24" fill="none">
@@ -246,18 +240,12 @@
                                                     fill="black" />
                                             </svg>
                                         </span>
-
                                     </div>
                                 </div>
-
                                 <div class="timeline-content mb-10 mt-n2">
-
                                     <div class="overflow-auto pe-3">
-
                                         <div class="fs-5 fw-bold mb-2">Invitation for crafting engaging designs that
-                                            speak
-                                            human workshop</div>
-
+                                            speak human workshop</div>
                                         <div class="d-flex align-items-center mt-1 fs-6">
 
                                             <div class="text-muted me-2 fs-7">Sent at 4:23 PM by</div>
@@ -279,10 +267,8 @@
                             <div class="timeline-item">
 
                                 <div class="timeline-line w-40px"></div>
-
                                 <div class="timeline-icon symbol symbol-circle symbol-40px">
                                     <div class="symbol-label bg-light">
-
                                         <span class="svg-icon svg-icon-2 svg-icon-gray-500">
                                             <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24"
                                                 viewBox="0 0 24 24" fill="none">
@@ -294,14 +280,12 @@
                                                     fill="black" />
                                             </svg>
                                         </span>
-
                                     </div>
                                 </div>
 
                                 <div class="timeline-content mb-10 mt-n1">
 
                                     <div class="mb-5 pe-3">
-
                                         <a href="#" class="fs-5 fw-bold text-gray-800 text-hover-primary mb-2">3
                                             New Incoming Project Files:</a>
 
@@ -406,7 +390,8 @@
                                             <div class="symbol symbol-circle symbol-25px" data-bs-toggle="tooltip"
                                                 data-bs-boundary="window" data-bs-placement="top"
                                                 title="Nina Nilson">
-                                                <img src="assets/media/avatars/150-11.jpg" alt="img" />
+                                                <img src="{{ asset('assets/media/avatars/150-11.jpg') }}"
+                                                    alt="img" />
                                             </div>
                                         </div>
                                     </div>
@@ -642,12 +627,9 @@
                             </div>
 
                             <div class="timeline-item">
-
                                 <div class="timeline-line w-40px"></div>
-
                                 <div class="timeline-icon symbol symbol-circle symbol-40px">
                                     <div class="symbol-label bg-light">
-
                                         <span class="svg-icon svg-icon-2 svg-icon-gray-500">
                                             <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24"
                                                 viewBox="0 0 24 24" fill="none">
@@ -662,7 +644,6 @@
                                                     fill="black" />
                                             </svg>
                                         </span>
-
                                     </div>
                                 </div>
 
@@ -753,7 +734,7 @@
                         </div>
 
                         <div class="btn btn-light-primary fw-bolder w-100 mb-8">
-                            <img alt="Logo" src="assets/media/svg/brand-logos/google-icon.svg"
+                            <img alt="Logo" src="{{ asset('assets/media/svg/brand-logos/google-icon.svg') }}"
                                 class="h-20px me-3" />Invite Gmail Contacts
                         </div>
 
@@ -2044,9 +2025,9 @@
     <script src="{{ asset('assets/js/custom/widgets.js') }}"></script>
     <script>
         moment.locale('id');
-        var target = document.querySelector("body");
+        var target = document.querySelector("html");
         var blockUI = new KTBlockUI(target, {
-            overlayClass: "bg-dark bg-opacity-50",
+            overlayClass: "bg-dark bg-opacity-75",
             message: '<div class="blockui-message text-white"><span class="spinner-border text-white"></span> Loading Data...</div>'
         });
 

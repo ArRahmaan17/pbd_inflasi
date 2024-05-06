@@ -17,7 +17,7 @@ class AuthController extends Controller
         return view('layout.admin.login');
     }
 
-    public function singup()
+    public function signup()
     {
         return view('layout.admin.register');
     }
