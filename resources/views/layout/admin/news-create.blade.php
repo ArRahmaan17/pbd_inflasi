@@ -59,11 +59,11 @@
                 <div class="mb-10">
                     <label for="type" class="required form-label">Tipe berita/pengumuman</label>
                     <select name="type" id="type" class="form-select">
-                        <option value=""></option>
+                        <option value="">Pilih Tipe</option>
                         <option value="pu_news">Berita Public</option>
                         <option value="pu_announcement">Pengumuman Public</option>
-                        <option value="pr_news">Berita Private</option>
-                        <option value="pr_announcement">Pengumuman Private</option>
+                        <option value="pr_news">Berita Internal (hanya untuk ....)</option>
+                        <option value="pr_announcement">Pengumuman Internal (hanya untuk ....)</option>
                     </select>
                 </div>
                 <button id="submit">Save</button>
