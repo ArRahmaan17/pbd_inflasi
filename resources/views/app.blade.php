@@ -4,9 +4,9 @@
 <head>
     <title>{{ env('APP_NAME') }}</title>
     <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta http-equiv="Permissions-Policy" content="interest-cohort=()">
     <meta charset="utf-8" />
     <meta property="og:locale" content="en_US" />
-    <meta property="og:type" content="article" />
     <link rel="shortcut icon" href="{{ asset('assets/media/logos/favicon.ico') }}" />
 
     <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Poppins:300,400,500,600,700" />
@@ -1981,24 +1981,15 @@
                                                             fill="black" />
                                                     </svg>
                                                 </span>
-
                                             </button>
                                         </div>
-
                                     </div>
-
                                 </form>
-
                             </div>
-
                         </div>
-
                     </div>
-
                 </div>
-
             </div>
-
         </div>
 
         <div id="kt_scrolltop" class="scrolltop" data-kt-scrolltop="true">
@@ -2028,10 +2019,10 @@
     <script src="{{ asset('assets/js/custom/widgets.js') }}"></script>
     <script>
         moment.locale('id');
-        var target = document.querySelector("html");
+        var target = document.querySelector("body");
         var blockUI = new KTBlockUI(target, {
-            overlayClass: "bg-dark bg-opacity-75",
-            message: '<div class="blockui-message text-white"><span class="spinner-border text-white"></span> Loading Data...</div>'
+            overlayClass: "page-loader bg-opacity-75",
+            message: '<div class="blockui-message text-grey-600"><span class="spinner-border text-grey-600"></span> Loading Data...</div>'
         });
 
         function blockUi() {

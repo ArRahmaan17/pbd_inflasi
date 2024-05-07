@@ -56,7 +56,7 @@ class NewsController extends Controller
      */
     public function create()
     {
-        //
+        return view('layout.admin.news-create');
     }
 
     /**

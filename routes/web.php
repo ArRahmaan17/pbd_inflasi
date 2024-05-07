@@ -21,6 +21,8 @@ Route::prefix('news')
     ->controller(NewsController::class)
     ->name('news.')->group(function () {
         Route::get('/',  'index')->name('index');
+        Route::get('/create',  'create')->name('create');
+        Route::post('/store',  'store')->name('store');
         Route::get('/load-limit',  'loadLimit')->name('load-limit');
         Route::get('/{slug?}',  'show')->name('show');
         Route::post('/{slug?}/comment',  'comment')->middleware(['auth'])->name('comment');

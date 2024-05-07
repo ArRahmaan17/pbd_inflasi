@@ -1,7 +1,16 @@
 @extends('app')
 @section('content')
     <div class="container-fluid my-5">
-        <h1>Berita Terkini</h1>
+        <div class="row align-items-center">
+            <div class="col-10">
+                <h1>Berita Terkini</h1>
+            </div>
+            @auth
+                <div class="col-2 text-end">
+                    <a href="{{ route('news.create') }}" class="btn btn-success btn-sm">Tambah Berita</a>
+                </div>
+            @endauth
+        </div>
         <div class="separator border-3 my-3"></div>
         <div class="card bg-transparent row flex-row justify-content-between py-5 rounded-0" id="news-container">
         </div>
@@ -48,9 +57,14 @@
                 }
             }
             $('.navigate').click(function() {
-                blockUi();
+                let card = this.querySelector('.card')
+                let UiBlock = new KTBlockUI(card, {
+                    overlayClass: "bg-black bg-opacity-25",
+                    message: '<div class="blockui-message text-grey-300"><span class="spinner-border text-grey-300"></span> Loading Data...</div>'
+                });
+                UiBlock.block()
                 setTimeout(() => {
-                    releaseUi();
+                    UiBlock.release()
                     window.location = $(this).data('href')
                 }, 1000);
             })

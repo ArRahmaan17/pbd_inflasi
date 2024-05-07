@@ -13,8 +13,7 @@
                     </div>
                     <div class="col-12 col-md-4 bg-opacity-50 bg-white rounded p-3 position-relative shadow-sm">
                         <p class="card-text text-capitalize">Ditulis pada {{ $news->updated_at }} oleh
-                        <div class="text-body-secondary text-lowercase">{{ $news->user->name ?? $news->user->email }}
-                        </div>
+                        <div class="text-body-secondary text-lowercase">{{ $news->user->name ?? $news->user->email }}</div>
                         </p>
                         <div class="separator my-3"></div>
                         <div class="row min-h-225px mh-75 scroll-y pb-4" id="container_comment" data-kt-scroll="true"
@@ -29,6 +28,11 @@
                                     </li>
                                 </div>
                             @empty
+                                <div class="col-12 first-comment">
+                                    <div class="text-gray-500 text-center">
+                                        Kolom Komentar Masih Kosong
+                                    </div>
+                                </div>
                             @endforelse
                         </div>
                         @auth
@@ -69,6 +73,7 @@
 
         function ElementComment() {
             let comment = $('[name=comment]').val();
+            $('.first-comment').remove();
             $('#container_comment').append(`<div class="col-12">
                         <div class="text-gray-500">
                             {{ Auth::user()->name ?? Auth::user()->email }}
@@ -76,7 +81,7 @@
                         <li class="d-flex align-items-center py-2">
                             <span class="bullet me-2"></span> ${comment}
                         </li>
-                    </div>`)
+                    </div>`);
         }
         $('[name=comment]').maxlength({
             warningClass: "badge badge-warning",
