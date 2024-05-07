@@ -2,7 +2,7 @@
 
     <div class="aside-logo d-none d-lg-flex flex-column align-items-center flex-column-auto py-10" id="kt_aside_logo">
         <a href="{{ route('home') }}">
-            <img alt="Logo" src="assets/media/logos/logo-default.svg" class="h-50px" />
+            <img alt="Logo" src="{{ asset('assets/media/logos/logo-default.svg') }}" class="h-50px" />
         </a>
     </div>
 
@@ -405,7 +405,7 @@
 
                             <div class="text-center px-4">
                                 <img class="mw-100 mh-200px" alt="metronic"
-                                    src="assets/media/illustrations/sigma-1/6.png" />
+                                    src="{{ asset('assets/media/illustrations/sigma-1/6.png') }}" />
                             </div>
 
                         </div>
@@ -634,7 +634,7 @@
             <div class="cursor-pointer symbol symbol-40px" data-kt-menu-trigger="click" data-kt-menu-overflow="true"
                 data-kt-menu-placement="top-start" data-bs-toggle="tooltip" data-bs-placement="right"
                 data-bs-dismiss="click" title="User profile">
-                <img src="assets/media/avatars/150-26.jpg" alt="image" />
+                <img src="{{ asset('assets/media/avatars/150-26.jpg') }}" alt="image" />
             </div>
 
             <div class="menu menu-sub menu-sub-dropdown menu-column menu-rounded menu-gray-800 menu-state-bg menu-state-primary fw-bold py-4 fs-6 w-275px"
@@ -644,7 +644,7 @@
                     <div class="menu-content d-flex align-items-center px-3">
 
                         <div class="symbol symbol-50px me-5">
-                            <img alt="Logo" src="assets/media/avatars/150-26.jpg" />
+                            <img alt="Logo" src="{{ asset('assets/media/avatars/150-26.jpg') }}" />
                         </div>
 
                         <div class="d-flex flex-column">
@@ -714,7 +714,8 @@
                         <span class="menu-title position-relative">Language
                             <span
                                 class="fs-8 rounded bg-light px-3 py-2 position-absolute translate-middle-y top-50 end-0">English
-                                <img class="w-15px h-15px rounded-1 ms-2" src="assets/media/flags/united-states.svg"
+                                <img class="w-15px h-15px rounded-1 ms-2"
+                                    src="{{ asset('assets/media/flags/united-states.svg') }}"
                                     alt="" /></span></span>
                     </a>
                     <div class="menu-sub menu-sub-dropdown w-175px py-4">
@@ -722,32 +723,36 @@
                         <div class="menu-item px-3">
                             <a href="#" class="menu-link d-flex px-5 active">
                                 <span class="symbol symbol-20px me-4">
-                                    <img class="rounded-1" src="assets/media/flags/united-states.svg"
+                                    <img class="rounded-1" src="{{ asset('assets/media/flags/united-states.svg') }}"
                                         alt="" />
                                 </span>English</a>
                         </div>
                         <div class="menu-item px-3">
                             <a href="#" class="menu-link d-flex px-5">
                                 <span class="symbol symbol-20px me-4">
-                                    <img class="rounded-1" src="assets/media/flags/spain.svg" alt="" />
+                                    <img class="rounded-1" src="{{ asset('assets/media/flags/spain.svg') }}"
+                                        alt="" />
                                 </span>Spanish</a>
                         </div>
                         <div class="menu-item px-3">
                             <a href="#" class="menu-link d-flex px-5">
                                 <span class="symbol symbol-20px me-4">
-                                    <img class="rounded-1" src="assets/media/flags/germany.svg" alt="" />
+                                    <img class="rounded-1" src="{{ asset('assets/media/flags/germany.svg') }}"
+                                        alt="" />
                                 </span>German</a>
                         </div>
                         <div class="menu-item px-3">
                             <a href="#" class="menu-link d-flex px-5">
                                 <span class="symbol symbol-20px me-4">
-                                    <img class="rounded-1" src="assets/media/flags/japan.svg" alt="" />
+                                    <img class="rounded-1" src="{{ asset('assets/media/flags/japan.svg') }}"
+                                        alt="" />
                                 </span>Japanese</a>
                         </div>
                         <div class="menu-item px-3">
                             <a href="#" class="menu-link d-flex px-5">
                                 <span class="symbol symbol-20px me-4">
-                                    <img class="rounded-1" src="assets/media/flags/france.svg" alt="" />
+                                    <img class="rounded-1" src="{{ asset('assets/media/flags/france.svg') }}"
+                                        alt="" />
                                 </span>French</a>
                         </div>
                     </div>

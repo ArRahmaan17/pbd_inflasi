@@ -17,9 +17,14 @@ use Illuminate\Support\Facades\Route;
 */
 
 Route::get('/', [HomeController::class, 'index'])->name('home');
-Route::get('/news', [NewsController::class, 'index'])->name('news');
-Route::get('/news/load-limit', [NewsController::class, 'loadLimit'])->name('news.load-limit');
-Route::get('/news/{slug?}', [NewsController::class, 'show'])->name('news.show');
+Route::prefix('news')
+    ->controller(NewsController::class)
+    ->name('news.')->group(function () {
+        Route::get('/',  'index')->name('index');
+        Route::get('/load-limit',  'loadLimit')->name('load-limit');
+        Route::get('/{slug?}',  'show')->name('show');
+        Route::post('/{slug?}/comment',  'comment')->middleware(['auth'])->name('comment');
+    });
 Route::middleware('guest')->group(function () {
     Route::get('/login', [AuthController::class, 'index'])->name('login');
     Route::post('/login', [AuthController::class, 'login'])->name('login');

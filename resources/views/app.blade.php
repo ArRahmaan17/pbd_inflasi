@@ -170,7 +170,8 @@
                                                 class="symbol-group symbol-hover flex-nowrap flex-grow-1 min-w-100px pe-2">
 
                                                 <div class="symbol symbol-circle symbol-25px">
-                                                    <img src="assets/media/avatars/150-3.jpg" alt="img" />
+                                                    <img src="{{ asset('assets/media/avatars/150-3.jpg') }}"
+                                                        alt="img" />
                                                 </div>
 
                                                 <div class="symbol symbol-circle symbol-25px">
@@ -208,7 +209,8 @@
                                             </div>
                                             <div class="symbol-group symbol-hover flex-nowrap flex-grow-1 min-w-100px">
                                                 <div class="symbol symbol-circle symbol-25px">
-                                                    <img src="assets/media/avatars/150-5.jpg" alt="img" />
+                                                    <img src="{{ asset('assets/media/avatars/150-5.jpg') }}"
+                                                        alt="img" />
                                                 </div>
                                                 <div class="symbol symbol-circle symbol-25px">
                                                     <div
@@ -253,19 +255,15 @@
                                             <div class="symbol symbol-circle symbol-25px" data-bs-toggle="tooltip"
                                                 data-bs-boundary="window" data-bs-placement="top"
                                                 title="Alan Nilson">
-                                                <img src="assets/media/avatars/150-2.jpg" alt="img" />
+                                                <img src="{{ asset('assets/media/avatars/150-2.jpg') }}"
+                                                    alt="img" />
                                             </div>
-
                                         </div>
-
                                     </div>
-
                                 </div>
-
                             </div>
 
                             <div class="timeline-item">
-
                                 <div class="timeline-line w-40px"></div>
                                 <div class="timeline-icon symbol symbol-circle symbol-40px">
                                     <div class="symbol-label bg-light">
@@ -295,35 +293,29 @@
 
                                             <div class="symbol symbol-circle symbol-25px" data-bs-toggle="tooltip"
                                                 data-bs-boundary="window" data-bs-placement="top" title="Jan Hummer">
-                                                <img src="assets/media/avatars/150-6.jpg" alt="img" />
+                                                <img src="{{ asset('assets/media/avatars/150-6.jpg') }}"
+                                                    alt="img" />
                                             </div>
                                         </div>
                                     </div>
                                     <div class="overflow-auto pb-5">
                                         <div
                                             class="d-flex align-items-center border border-dashed border-gray-300 rounded min-w-700px p-5">
-
                                             <div class="d-flex flex-aligns-center pe-10 pe-lg-20">
-
                                                 <img alt="" class="w-30px me-3"
-                                                    src="assets/media/svg/files/pdf.svg" />
-
+                                                    src="{{ asset('assets/media/svg/files/pdf.svg') }}" />
                                                 <div class="ms-1 fw-bold">
-
                                                     <a href="#"
                                                         class="fs-6 text-hover-primary fw-bolder">Finance
                                                         KPI App Guidelines</a>
-
                                                     <div class="text-gray-400">1.9mb</div>
-
                                                 </div>
-
                                             </div>
 
                                             <div class="d-flex flex-aligns-center pe-10 pe-lg-20">
 
                                                 <img alt="" class="w-30px me-3"
-                                                    src="assets/media/svg/files/doc.svg" />
+                                                    src="{{ asset('assets/media/svg/files/doc.svg') }}" />
 
                                                 <div class="ms-1 fw-bold">
 
@@ -339,7 +331,7 @@
                                             <div class="d-flex flex-aligns-center">
 
                                                 <img alt="" class="w-30px me-3"
-                                                    src="assets/media/svg/files/css.svg" />
+                                                    src="{{ asset('assets/media/svg/files/css.svg') }}" />
 
                                                 <div class="ms-1 fw-bold">
 
@@ -433,7 +425,8 @@
                                             <div class="symbol symbol-circle symbol-25px" data-bs-toggle="tooltip"
                                                 data-bs-boundary="window" data-bs-placement="top"
                                                 title="Marcus Dotson">
-                                                <img src="assets/media/avatars/150-3.jpg" alt="img" />
+                                                <img src="{{ asset('assets/media/avatars/150-3.jpg') }}"
+                                                    alt="img" />
                                             </div>
 
                                         </div>
@@ -448,7 +441,7 @@
 
                                                 <div class="overlay-wrapper">
                                                     <img alt="img" class="rounded w-100px"
-                                                        src="assets/media/stock/300x270/1.jpg" />
+                                                        src="{{ asset('assets/media/stock/300x270/1.jpg') }}" />
                                                 </div>
 
                                                 <div class="overlay-layer bg-dark bg-opacity-10 rounded">
@@ -462,7 +455,7 @@
 
                                                 <div class="overlay-wrapper">
                                                     <img alt="img" class="rounded w-100px"
-                                                        src="assets/media/stock/300x270/2.jpg" />
+                                                        src="{{ asset('assets/media/stock/300x270/2.jpg') }}" />
                                                 </div>
 
                                                 <div class="overlay-layer bg-dark bg-opacity-10 rounded">
@@ -476,7 +469,7 @@
 
                                                 <div class="overlay-wrapper">
                                                     <img alt="img" class="rounded w-100px"
-                                                        src="assets/media/stock/300x270/3.jpg" />
+                                                        src="{{ asset('assets/media/stock/300x270/3.jpg') }}" />
                                                 </div>
 
                                                 <div class="overlay-layer bg-dark bg-opacity-10 rounded">
@@ -578,7 +571,8 @@
                                             <div class="symbol symbol-circle symbol-25px" data-bs-toggle="tooltip"
                                                 data-bs-boundary="window" data-bs-placement="top"
                                                 title="Robert Rich">
-                                                <img src="assets/media/avatars/150-14.jpg" alt="img" />
+                                                <img src="{{ asset('assets/media/avatars/150-14.jpg') }}"
+                                                    alt="img" />
                                             </div>
 
                                         </div>
@@ -755,7 +749,8 @@
                                     <div class="d-flex align-items-center">
 
                                         <div class="symbol symbol-35px symbol-circle">
-                                            <img alt="Pic" src="assets/media/avatars/150-1.jpg" />
+                                            <img alt="Pic"
+                                                src="{{ asset('assets/media/avatars/150-1.jpg') }}" />
                                         </div>
 
                                         <div class="ms-5">
@@ -811,7 +806,8 @@
                                     <div class="d-flex align-items-center">
 
                                         <div class="symbol symbol-35px symbol-circle">
-                                            <img alt="Pic" src="assets/media/avatars/150-26.jpg" />
+                                            <img alt="Pic"
+                                                src="{{ asset('assets/media/avatars/150-26.jpg') }}" />
                                         </div>
 
                                         <div class="ms-5">
@@ -839,7 +835,8 @@
                                     <div class="d-flex align-items-center">
 
                                         <div class="symbol symbol-35px symbol-circle">
-                                            <img alt="Pic" src="assets/media/avatars/150-4.jpg" />
+                                            <img alt="Pic"
+                                                src="{{ asset('assets/media/avatars/150-4.jpg') }}" />
                                         </div>
 
                                         <div class="ms-5">
@@ -867,7 +864,8 @@
                                     <div class="d-flex align-items-center">
 
                                         <div class="symbol symbol-35px symbol-circle">
-                                            <img alt="Pic" src="assets/media/avatars/150-15.jpg" />
+                                            <img alt="Pic"
+                                                src="{{ asset('assets/media/avatars/150-15.jpg') }}" />
                                         </div>
 
                                         <div class="ms-5">
@@ -923,7 +921,8 @@
                                     <div class="d-flex align-items-center">
 
                                         <div class="symbol symbol-35px symbol-circle">
-                                            <img alt="Pic" src="assets/media/avatars/150-8.jpg" />
+                                            <img alt="Pic"
+                                                src="{{ asset('assets/media/avatars/150-8.jpg') }}" />
                                         </div>
 
                                         <div class="ms-5">
@@ -1007,7 +1006,8 @@
                                     <div class="d-flex align-items-center">
 
                                         <div class="symbol symbol-35px symbol-circle">
-                                            <img alt="Pic" src="assets/media/avatars/150-6.jpg" />
+                                            <img alt="Pic"
+                                                src="{{ asset('assets/media/avatars/150-6.jpg') }}" />
                                         </div>
 
                                         <div class="ms-5">
@@ -1063,7 +1063,8 @@
                                     <div class="d-flex align-items-center">
 
                                         <div class="symbol symbol-35px symbol-circle">
-                                            <img alt="Pic" src="assets/media/avatars/150-7.jpg" />
+                                            <img alt="Pic"
+                                                src="{{ asset('assets/media/avatars/150-7.jpg') }}" />
                                         </div>
 
                                         <div class="ms-5">
@@ -1119,7 +1120,8 @@
                                     <div class="d-flex align-items-center">
 
                                         <div class="symbol symbol-35px symbol-circle">
-                                            <img alt="Pic" src="assets/media/avatars/150-17.jpg" />
+                                            <img alt="Pic"
+                                                src="{{ asset('assets/media/avatars/150-17.jpg') }}" />
                                         </div>
 
                                         <div class="ms-5">
@@ -1175,7 +1177,8 @@
                                     <div class="d-flex align-items-center">
 
                                         <div class="symbol symbol-35px symbol-circle">
-                                            <img alt="Pic" src="assets/media/avatars/150-10.jpg" />
+                                            <img alt="Pic"
+                                                src="{{ asset('assets/media/avatars/150-10.jpg') }}" />
                                         </div>
 
                                         <div class="ms-5">
@@ -1782,11 +1785,11 @@
 
                                                     <div
                                                         class="position-absolute translate-middle-y top-50 end-0 me-5">
-                                                        <img src="assets/media/svg/card-logos/visa.svg"
+                                                        <img src="{{ asset('assets/media/svg/card-logos/visa.svg') }}"
                                                             alt="" class="h-25px" />
-                                                        <img src="assets/media/svg/card-logos/mastercard.svg"
+                                                        <img src="{{ asset('assets/media/svg/card-logos/mastercard.svg') }}"
                                                             alt="" class="h-25px" />
-                                                        <img src="assets/media/svg/card-logos/american-express.svg"
+                                                        <img src="{{ asset('assets/media/svg/card-logos/american-express.svg') }}"
                                                             alt="" class="h-25px" />
                                                     </div>
 
@@ -1916,8 +1919,8 @@
                                                 project.</div>
 
                                             <div class="text-center px-4 py-15">
-                                                <img src="assets/media/illustrations/sigma-1/9.png" alt=""
-                                                    class="w-100 mh-300px" />
+                                                <img src="{{ asset('assets/media/illustrations/sigma-1/9.png') }}"
+                                                    alt="" class="w-100 mh-300px" />
                                             </div>
 
                                         </div>

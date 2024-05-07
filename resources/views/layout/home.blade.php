@@ -104,7 +104,7 @@
         </div>
         <div class="text-center">
             <div class="col">
-                <a href="{{ route('news') }}"
+                <a href="{{ route('news.index') }}"
                     class="btn btn-outline btn-outline-dashed btn-outline-success btn-active-light-success hover-scale">Tampilkan
                     Lebih Banyak</a>
             </div>

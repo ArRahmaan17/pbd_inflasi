@@ -58,6 +58,7 @@ class AuthController extends Controller
         $response = ['message' => 'Gagal Login Ke Aplikasi', 'button' => 'Coba Lagi'];
         $code = 401;
         if (Auth::attempt($request->except('_token'))) {
+            $request->session()->regenerate();
             $response = ['message' => 'Berhasil Login Ke Aplikasi', 'button' => 'Masuk Aplikasi'];
             $code = 200;
         }

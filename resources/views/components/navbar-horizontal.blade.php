@@ -5,7 +5,7 @@
         id="kt_header_container">
         <div class="aside-logo d-none d-sm-flex flex-column align-items-center flex-column-auto py-10" id="kt_aside_logo">
             <a href="{{ route('home') }}">
-                <img alt="Logo" src="assets/media/logos/logo-default.svg" class="h-50px" />
+                <img alt="Logo" src="{{ asset('assets/media/logos/logo-default.svg') }}" class="h-50px" />
             </a>
         </div>
         <div class="menu">

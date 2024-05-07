@@ -1180,7 +1180,8 @@
                                  <div class="d-flex align-items-center mb-7">
 
                                      <div class="symbol symbol-50px me-5">
-                                         <img src="assets/media/avatars/150-1.jpg" class="" alt="" />
+                                         <img src="{{ asset('assets/media/avatars/150-1.jpg') }}" class=""
+                                             alt="" />
                                      </div>
 
                                      <div class="flex-grow-1">
@@ -1196,7 +1197,8 @@
                                  <div class="d-flex align-items-center mb-7">
 
                                      <div class="symbol symbol-50px me-5">
-                                         <img src="assets/media/avatars/150-4.jpg" class="" alt="" />
+                                         <img src="{{ asset('assets/media/avatars/150-4.jpg') }}" class=""
+                                             alt="" />
                                      </div>
 
                                      <div class="flex-grow-1">
@@ -1212,7 +1214,8 @@
                                  <div class="d-flex align-items-center mb-7">
 
                                      <div class="symbol symbol-50px me-5">
-                                         <img src="assets/media/avatars/150-12.jpg" class="" alt="" />
+                                         <img src="{{ asset('assets/media/avatars/150-12.jpg') }}" class=""
+                                             alt="" />
                                      </div>
 
                                      <div class="flex-grow-1">
@@ -1228,7 +1231,8 @@
                                  <div class="d-flex align-items-center mb-7">
 
                                      <div class="symbol symbol-50px me-5">
-                                         <img src="assets/media/avatars/150-6.jpg" class="" alt="" />
+                                         <img src="{{ asset('assets/media/avatars/150-6.jpg') }}" class=""
+                                             alt="" />
                                      </div>
 
                                      <div class="flex-grow-1">
@@ -1243,7 +1247,8 @@
                                  <div class="d-flex align-items-center mb-7">
 
                                      <div class="symbol symbol-50px me-5">
-                                         <img src="assets/media/avatars/150-9.jpg" class="" alt="" />
+                                         <img src="{{ asset('assets/media/avatars/150-9.jpg') }}" class=""
+                                             alt="" />
                                      </div>
 
                                      <div class="flex-grow-1">
@@ -1259,7 +1264,8 @@
                                  <div class="d-flex align-items-center mb-7">
 
                                      <div class="symbol symbol-50px me-5">
-                                         <img src="assets/media/avatars/150-8.jpg" class="" alt="" />
+                                         <img src="{{ asset('assets/media/avatars/150-8.jpg') }}" class=""
+                                             alt="" />
                                      </div>
 
                                      <div class="flex-grow-1">
@@ -1274,7 +1280,8 @@
                                  <div class="d-flex align-items-center">
 
                                      <div class="symbol symbol-50px me-5">
-                                         <img src="assets/media/avatars/150-7.jpg" class="" alt="" />
+                                         <img src="{{ asset('assets/media/avatars/150-7.jpg') }}" class=""
+                                             alt="" />
                                      </div>
 
                                      <div class="flex-grow-1">
@@ -1283,13 +1290,9 @@
                                              Clarcson</a>
                                          <span class="text-muted d-block fw-bold">Angular, React</span>
                                      </div>
-
                                  </div>
-
                              </div>
-
                          </div>
-
                      </div>
                  </div>
              </div>

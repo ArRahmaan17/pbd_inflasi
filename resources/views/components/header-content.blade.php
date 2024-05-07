@@ -26,7 +26,7 @@
                 </span>
             </div>
             <a href="{{ route('home') }}" class="d-flex align-items-center">
-                <img alt="Logo" src="assets/media/logos/logo-default.svg" class="h-40px" />
+                <img alt="Logo" src="{{ asset('assets/media/logos/logo-default.svg') }}" class="h-40px" />
             </a>
         </div>
         @auth

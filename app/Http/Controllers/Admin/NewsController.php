@@ -4,7 +4,10 @@ namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
 use App\Models\News;
+use App\Models\NewsComment;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\DB;
 
 class NewsController extends Controller
 {
@@ -25,6 +28,25 @@ class NewsController extends Controller
         } else {
             $status = 404;
             $response = ['message' => 'Failed Loaded News data', 'data' => $news];
+        }
+        return response()->json($response, $status);
+    }
+
+    public function comment($slug, Request $request)
+    {
+        $request->validate(['comment' => 'required']);
+        DB::beginTransaction();
+        try {
+            $data = $request->except('_token');
+            $data['user_id'] = Auth::user()->id;
+            NewsComment::Comment($slug, $data);
+            $status = 200;
+            $response = ['message' => 'komen berhasil di tambahkan'];
+            DB::commit();
+        } catch (\Throwable $th) {
+            DB::rollBack();
+            $status = 422;
+            $response = ['message' => 'komen gagal di tambahkan, coba beberapa saat lagi'];
         }
         return response()->json($response, $status);
     }
@@ -50,7 +72,7 @@ class NewsController extends Controller
      */
     public function show(string $slug)
     {
-        $news = News::with('user')->where('slug', $slug)->first();
+        $news = News::with(['user', 'comment'])->where('slug', $slug)->first();
         return view('layout.admin.news-show', compact('news'));
     }
 
