@@ -90,21 +90,24 @@
         $(function() {
             var screen_size = $(window).width();
             if (screen_size < 576) {
-                loadNews(3);
+                loadNews(4);
             } else if (screen_size >= 576 && screen_size < 768) {
-                loadNews(5);
+                loadNews(6);
             } else if (screen_size >= 768) {
                 loadNews(9);
             }
             $(window).scroll(function() {
-                if ($(window).scrollTop() == $(document).height() - $(window).height() && $('.max-view')
-                    .length == 0) {
+                if (
+                    (Math.floor($(window).scrollTop()) == $(document).height() - $(window).height() || Math
+                        .round($(window).scrollTop()) == $(document).height() - $(window).height()) &&
+                    $('.max-view').length == 0
+                ) {
                     if (screen_size < 576) {
-                        loadNews(1 + 2);
+                        loadNews(4);
                     } else if (screen_size >= 576 && screen_size < 768) {
-                        loadNews(2 + 3);
+                        loadNews(6);
                     } else if (screen_size >= 768) {
-                        loadNews(3 + 4);
+                        loadNews(9);
                     }
                 }
             });
