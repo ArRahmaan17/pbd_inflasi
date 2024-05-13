@@ -181,7 +181,6 @@
                 },
                 maxFiles: 1,
                 maxFilesize: 1,
-                autoProcessQueue: false,
                 previewsContainer: id + " .dropzone-items",
                 clickable: id +
                     " .dropzone-select"
@@ -195,6 +194,12 @@
                 const dropzoneItems = dropzone.querySelectorAll('.dropzone-item');
                 dropzoneItems.forEach(dropzoneItem => {
                     dropzoneItem.style.display = '';
+                });
+                $('.dropzone-delete').click(function() {
+                    let cancelThumbnail = new FormData;
+                    cancelThumbnail.append('_token', `{{ csrf_token() }}`);
+                    cancelThumbnail.append('rand', `{{ $rand }}`);
+                    sendXhr('POST', `{{ route('news.cancel-thumbnail') }}`, cancelThumbnail);
                 });
             });
 
@@ -227,17 +232,7 @@
                     });
                 }, 300);
             });
-            let filename = `{{ $news->slug }}.{{ explode('.', $news->photo)[1] }}`;
-            var existingFiles = [{
-                name: filename,
-                size: `{{ $news->size }}`
-            }];
-            for (i = 0; i < existingFiles.length; i++) {
-                myDropzone.emit("addedfile", existingFiles[i]);
-                myDropzone.emit("complete", existingFiles[i]);
-                myDropzone.files.push(existingFiles[i]);
-            }
-            tinymce.get("content").setContent(`{!! $news->content !!}`);
+
             $('#submit').click(function(e) {
                 e.preventDefault();
                 e.stopPropagation();
@@ -248,10 +243,7 @@
                     }
                 });
                 data.append('content', tinymce.get('content').getContent());
-                if (myDropzone.files.length > 0 && myDropzone.files[0] !== filename) {
-                    myDropzone.processQueue();
-                }
-                sendXhr('patch', `{{ route('news.update', $news->slug) }}`, data);
+                sendXhr('POST', `{{ route('news.update') }}`, data);
                 // on controller if have same random integer move to untemporary file store and remove all content if have asset on temporary folder to main folder
             });
         });
