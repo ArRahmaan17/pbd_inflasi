@@ -104,7 +104,6 @@ class NewsController extends Controller
             DB::commit();
         } catch (\Throwable $th) {
             DB::rollBack();
-            dd($th);
             $response = ['message' => 'berita / pengumuman gagal di buat'];
             $status = 422;
         }
