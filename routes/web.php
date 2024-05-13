@@ -25,10 +25,12 @@ Route::prefix('news')
         Route::post('/store',  'store')->name('store');
         Route::get('/load-limit',  'loadLimit')->name('load-limit');
         Route::get('/{slug?}',  'show')->name('show');
-        Route::get('/{slug?}/edit',  'edit')->name('edit');
+        Route::get('/{slug?}/edit',  'edit')->middleware(['auth'])->name('edit');
+        Route::patch('/{slug?}/update',  'update')->middleware(['auth'])->name('update');
         Route::post('/{slug?}/comment',  'comment')->middleware(['auth'])->name('comment');
         Route::post('/asset-upload',  'assetUpload')->middleware(['auth'])->name('asset-upload');
         Route::post('/thumbnail-upload',  'thumbnailUpload')->middleware(['auth'])->name('thumbnail-upload');
+        Route::post('/cancel-thumbnail',  'cancelThumbnail')->middleware(['auth'])->name('cancel-thumbnail');
     });
 Route::middleware('guest')->group(function () {
     Route::get('/login', [AuthController::class, 'index'])->name('login');

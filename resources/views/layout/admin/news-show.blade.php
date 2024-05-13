@@ -8,10 +8,12 @@
                         <a class="btn btn-icon btn-sm btn-success" href="{{ route('news.index') }}"><i
                                 class="fas fa-arrow-left"></i>
                         </a>
-                        @if (auth()->user()->id == $news->user_id)
-                            <a class="btn btn-icon btn-sm btn-warning" href="{{ route('news.edit', $news->slug) }}"><i
-                                    class="fas fa-pen"></i></a>
-                        @endif
+                        @auth
+                            @if (auth()->user()->id == $news->user_id)
+                                <a class="btn btn-icon btn-sm btn-warning" href="{{ route('news.edit', $news->slug) }}"><i
+                                        class="fas fa-pen"></i></a>
+                            @endif
+                        @endauth
                     </div>
                 </div>
                 <div class="row justify-content-between">

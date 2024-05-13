@@ -21,7 +21,7 @@ class NewsFactory extends Factory
         $array = ['pu_news', 'pu_announcement', 'pr_news', 'pr_announcement'];
         return [
             'slug' => fake()->slug(),
-            'title' => fake()->paragraph(),
+            'title' => fake()->paragraph(1),
             'content' => fake()->realText(),
             'type' => $array[rand(0, 3)],
             'photo' => fake()->slug() . '.' . fake()->fileExtension(),

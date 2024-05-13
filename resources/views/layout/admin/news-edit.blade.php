@@ -4,7 +4,7 @@
         <h1>Edit Berita / Pengumuman</h1>
         <div class="separator border-3 my-3"></div>
         <div class="card bg-transparent row flex-row justify-content-between py-5 rounded-0">
-            <form action="{{ route('news.store') }}" method="POST" id="create_news">
+            <form method="POST" id="create_news">
                 @csrf
                 <div class="mb-10">
                     <label for="title" class="required form-label">Judul Berita / Pengumuman</label>
@@ -70,7 +70,7 @@
                         </option>
                     </select>
                 </div>
-                <button id="submit" class="btn btn-success">Simpan</button>
+                <button id="submit" class="btn btn-warning">Update</button>
             </form>
         </div>
     </div>
@@ -83,6 +83,7 @@
             formData = new FormData();
             formData.append('file', blobInfo.blob(), blobInfo.filename());
             formData.append('_token', `{{ csrf_token() }}`);
+            formData.append('rand', `{{ $rand }}`);
             xhr = new XMLHttpRequest();
             xhr.withCredentials = false;
             xhr.open('POST', `{{ route('news.asset-upload') }}`);
@@ -160,6 +161,7 @@
                 previewTemplate: previewTemplate,
                 headers: {
                     'X-CSRF-TOKEN': `{{ csrf_token() }}`,
+                    'X-RAND-TOKEN': `{{ $rand }}`,
                 },
                 thumbnail(file, dataUrl) {
                     if (file.previewElement) {
@@ -225,7 +227,17 @@
                     });
                 }, 300);
             });
-
+            let filename = `{{ $news->slug }}.{{ explode('.', $news->photo)[1] }}`;
+            var existingFiles = [{
+                name: filename,
+                size: `{{ $news->size }}`
+            }];
+            for (i = 0; i < existingFiles.length; i++) {
+                myDropzone.emit("addedfile", existingFiles[i]);
+                myDropzone.emit("complete", existingFiles[i]);
+                myDropzone.files.push(existingFiles[i]);
+            }
+            tinymce.get("content").setContent(`{!! $news->content !!}`);
             $('#submit').click(function(e) {
                 e.preventDefault();
                 e.stopPropagation();
@@ -236,10 +248,10 @@
                     }
                 });
                 data.append('content', tinymce.get('content').getContent());
-                if (myDropzone.files.length > 0) {
+                if (myDropzone.files.length > 0 && myDropzone.files[0] !== filename) {
                     myDropzone.processQueue();
                 }
-                sendXhr('POST', `{{ route('news.store') }}`, data);
+                sendXhr('patch', `{{ route('news.update', $news->slug) }}`, data);
                 // on controller if have same random integer move to untemporary file store and remove all content if have asset on temporary folder to main folder
             });
         });
