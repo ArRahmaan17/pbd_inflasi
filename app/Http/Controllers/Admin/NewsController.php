@@ -122,9 +122,10 @@ class NewsController extends Controller
     /**
      * Show the form for editing the specified resource.
      */
-    public function edit(string $id)
+    public function edit(string $slug)
     {
-        //
+        $news = News::with(['user', 'comment'])->where('slug', $slug)->first();
+        return view('layout.admin.news-edit', compact('news'));
     }
 
     /**

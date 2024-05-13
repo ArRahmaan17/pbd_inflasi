@@ -3,10 +3,21 @@
     <div class="container-fluid my-5">
         <div class="card mb-3 shadow-none bg-transparent m-0 min-h-100">
             <div class="card-body p-0 min-h-75">
+                <div class="row justify-content-end mb-5">
+                    <div class="col-3 text-end column-gap-1">
+                        <a class="btn btn-icon btn-sm btn-success" href="{{ route('news.index') }}"><i
+                                class="fas fa-arrow-left"></i>
+                        </a>
+                        @if (auth()->user()->id == $news->user_id)
+                            <a class="btn btn-icon btn-sm btn-warning" href="{{ route('news.edit', $news->slug) }}"><i
+                                    class="fas fa-pen"></i></a>
+                        @endif
+                    </div>
+                </div>
                 <div class="row justify-content-between">
                     <div class="col-12 col-md-8 mb-5 mb-sm-0">
-                        <img src="{{ asset($news->photo) }}" style="max-height: 300px; object-fit:contain" class="card-img-top"
-                            alt="{{ $news->photo }}">
+                        <img src="{{ asset($news->photo) }}" style="max-height: 300px; object-fit:contain"
+                            class="card-img-top" alt="{{ $news->photo }}">
                         <h5 class="card-title">{{ $news->title }}</h5>
                         <div class="separator my-3"></div>
                         <p class="card-text">{!! $news->content !!}</p>

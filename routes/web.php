@@ -25,6 +25,7 @@ Route::prefix('news')
         Route::post('/store',  'store')->name('store');
         Route::get('/load-limit',  'loadLimit')->name('load-limit');
         Route::get('/{slug?}',  'show')->name('show');
+        Route::get('/{slug?}/edit',  'edit')->name('edit');
         Route::post('/{slug?}/comment',  'comment')->middleware(['auth'])->name('comment');
         Route::post('/asset-upload',  'assetUpload')->middleware(['auth'])->name('asset-upload');
         Route::post('/thumbnail-upload',  'thumbnailUpload')->middleware(['auth'])->name('thumbnail-upload');
