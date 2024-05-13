@@ -11,11 +11,15 @@ use Illuminate\Support\Facades\Auth;
 class News extends Model
 {
     use HasFactory;
-    // protected $fillable = [
-    //     'name',
-    //     'email',
-    //     'password',
-    // ];
+    protected $fillable = [
+        'title',
+        'content',
+        'type',
+        'slug',
+        'photo',
+        'user_id',
+        'regency_id',
+    ];
     static function loadLimit($limit = 3, $id = 0)
     {
         $news = self::with('user')->limit($limit);

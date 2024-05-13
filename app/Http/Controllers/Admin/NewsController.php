@@ -8,6 +8,8 @@ use App\Models\NewsComment;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Storage;
+use Illuminate\Support\Str;
 
 class NewsController extends Controller
 {
@@ -30,6 +32,17 @@ class NewsController extends Controller
             $response = ['message' => 'Failed Loaded News data', 'data' => $news];
         }
         return response()->json($response, $status);
+    }
+
+    public function assetUpload(Request $request)
+    {
+        $photo = Storage::disk('public_asset')->put('/media/news/temp/asset/' . $request->rand, $request->file('file'));
+        return response()->json(array('location' => asset('assets/' . $photo)));
+    }
+    public function thumbnailUpload(Request $request)
+    {
+        $photo = Storage::disk('public_asset')->put('/media/news/temp/thumbnail/' . $request->header('X-RAND-TOKEN'), $request->file('file'));
+        return response()->json(array('location' => asset('assets/' . $photo)));
     }
 
     public function comment($slug, Request $request)
@@ -56,7 +69,7 @@ class NewsController extends Controller
      */
     public function create()
     {
-        return view('layout.admin.news-create');
+        return view('layout.admin.news-create', ['rand' => rand(0, 1000)]);
     }
 
     /**
@@ -64,7 +77,38 @@ class NewsController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $request->validate([
+            'title' => 'required',
+            'content' => 'required',
+            'type' => 'required|in:pu_news,pu_announcement,pr_news,pr_announcement',
+        ]);
+        DB::beginTransaction();
+        try {
+            $data = $request->except('_token', 'rand');
+            $data['slug'] = Str::of($data['title'])->slug('-');
+            $data['content'] = implode('/', explode('/temp/', $data['content'])) ?? $data['content'];
+            $data['user_id'] = auth()->user()->id;
+            $data['regency_id'] = 1;
+            if (Storage::disk('public_asset')->exists('/media/news/temp/thumbnail/' . $request->rand)) {
+                Storage::disk('public_asset')->move('/media/news/temp/thumbnail/' . $request->rand, '/media/news/thumbnail/' . $request->rand);
+                Storage::disk('public_asset')->deleteDirectory('/media/news/temp/thumbnail/' . $request->rand);
+                $data['photo'] = Storage::disk('public_asset')->get('/media/news/thumbnail/' . $request->rand);
+            }
+            if (Storage::disk('public_asset')->exists('/media/news/temp/asset/' . $request->rand)) {
+                Storage::disk('public_asset')->move('/media/news/temp/asset/' . $request->rand, '/media/news/asset/' . $request->rand);
+                Storage::disk('public_asset')->deleteDirectory('/media/news/temp/asset/' . $request->rand);
+            }
+            News::create($data);
+            $response = ['message' => 'berita / pengumuman berhasil di buat'];
+            $status = 200;
+            DB::commit();
+        } catch (\Throwable $th) {
+            DB::rollBack();
+            dd($th);
+            $response = ['message' => 'berita / pengumuman gagal di buat'];
+            $status = 422;
+        }
+        return response()->json($response, $status);
     }
 
     /**

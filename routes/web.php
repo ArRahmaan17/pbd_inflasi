@@ -26,6 +26,8 @@ Route::prefix('news')
         Route::get('/load-limit',  'loadLimit')->name('load-limit');
         Route::get('/{slug?}',  'show')->name('show');
         Route::post('/{slug?}/comment',  'comment')->middleware(['auth'])->name('comment');
+        Route::post('/asset-upload',  'assetUpload')->middleware(['auth'])->name('asset-upload');
+        Route::post('/thumbnail-upload',  'thumbnailUpload')->middleware(['auth'])->name('thumbnail-upload');
     });
 Route::middleware('guest')->group(function () {
     Route::get('/login', [AuthController::class, 'index'])->name('login');

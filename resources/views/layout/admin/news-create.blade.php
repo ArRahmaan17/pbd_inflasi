@@ -4,15 +4,16 @@
         <h1>Buat Berita / Pengumuman</h1>
         <div class="separator border-3 my-3"></div>
         <div class="card bg-transparent row flex-row justify-content-between py-5 rounded-0">
-            <form action="{{ route('news.store') }}" method="POST">
+            <form action="{{ route('news.store') }}" method="POST" id="create_news">
                 @csrf
+                <input type="hidden" name="rand" value="{{ $rand }}">
                 <div class="mb-10">
-                    <label for="title" class="required form-label">Title</label>
-                    <input type="email" id="title" class="form-control"
+                    <label for="title" class="required form-label">Judul Berita / Pengumuman</label>
+                    <input type="text" id="title" name="title" class="form-control"
                         placeholder="Akan Hadir Pasar Bahan Pangan Pada Jumat ini....." />
                 </div>
                 <div class="mb-10">
-                    <label for="content" class="required form-label">Content</label>
+                    <label for="content" class="required form-label">Isi Berita / Pengumuman</label>
                     <textarea class="form-control" name="content" id="content"></textarea>
                 </div>
                 <div class="mb-3">
@@ -20,14 +21,14 @@
                     <div class="col border-gray-300 border-dashed p-3">
                         <div class="dropzone dropzone-queue mb-2" id="kt_dropzonejs_example_2">
                             <div class="dropzone-panel mb-lg-0 mb-2">
-                                <a class="dropzone-select btn btn-sm btn-primary me-2">Attach files</a>
-                                <a class="dropzone-upload btn btn-sm btn-light-primary me-2">Upload All</a>
-                                <a class="dropzone-remove-all btn btn-sm btn-light-primary">Remove All</a>
+                                <a class="dropzone-select btn btn-sm btn-primary me-2"><i class="fas fa-plus"></i>Attach
+                                    files</a>
                             </div>
                             <div class="dropzone-items wm-200px">
                                 <div class="dropzone-item" style="display:none">
 
                                     <div class="dropzone-file">
+                                        <img data-dz-thumbnail />
                                         <div class="dropzone-filename" title="some_image_file_name.jpg">
                                             <span data-dz-name>some_image_file_name.jpg</span>
                                             <strong>(<span data-dz-size>340kb</span>)</strong>
@@ -53,20 +54,20 @@
                                 </div>
                             </div>
                         </div>
-                        <span class="form-text text-muted">Max file size is 1MB and max number of files is 5.</span>
+                        <span class="form-text text-muted">Max file size is 1MB</span>
                     </div>
                 </div>
                 <div class="mb-10">
-                    <label for="type" class="required form-label">Tipe berita/pengumuman</label>
+                    <label for="type" class="required form-label">Tipe Berita / Pengumuman</label>
                     <select name="type" id="type" class="form-select">
                         <option value="">Pilih Tipe</option>
                         <option value="pu_news">Berita Public</option>
                         <option value="pu_announcement">Pengumuman Public</option>
-                        <option value="pr_news">Berita Internal (hanya untuk ....)</option>
-                        <option value="pr_announcement">Pengumuman Internal (hanya untuk ....)</option>
+                        <option value="pr_news">Berita Internal</option>
+                        <option value="pr_announcement">Pengumuman Internal</option>
                     </select>
                 </div>
-                <button id="submit">Save</button>
+                <button id="submit" class="btn btn-success">Simpan</button>
             </form>
         </div>
     </div>
@@ -74,149 +75,203 @@
 @push('js')
     <script src="{{ asset('assets/plugins/custom/tinymce/tinymce.bundle.js') }}"></script>
     <script>
-        var editor;
+        function example_image_upload_handler(blobInfo, success, failure, progress) {
+            var formData;
+            formData = new FormData();
+            formData.append('file', blobInfo.blob(), blobInfo.filename());
+            formData.append('_token', `{{ csrf_token() }}`);
+            formData.append('rand', `{{ $rand }}`);
+            xhr = new XMLHttpRequest();
+            xhr.withCredentials = false;
+            xhr.open('POST', `{{ route('news.asset-upload') }}`);
 
-        var options = {
-            selector: "#content",
-            height: "480",
-            menubar: false,
-            image_title: true,
-            toolbar: ["styleselect fontselect fontsizeselect",
-                "undo redo | bold italic | link image | alignleft aligncenter alignright alignjustify",
-                "bullist numlist | outdent indent | blockquote subscript superscript | advlist | autolink | lists charmap | code | preview "
-            ],
-            plugins: "advlist autolink link image lists charmap preview code",
-            file_picker_callback: (cb, value, meta) => {
-                console.log(cb, value, meta)
-                const input = document.createElement('input');
-                input.setAttribute('type', 'file');
-                input.setAttribute('accept', 'image/*');
-
-                input.addEventListener('change', (e) => {
-                    const file = e.target.files[0];
-
-                    const reader = new FileReader();
-                    reader.addEventListener('load', () => {
-                        /*
-                          Note: Now we need to register the blob in TinyMCEs image blob
-                          registry. In the next release this part hopefully won't be
-                          necessary, as we are looking to handle it internally.
-                        */
-                        const id = 'blobid' + (new Date()).getTime();
-                        const blobCache = tinymce.activeEditor.editorUpload.blobCache;
-                        const base64 = reader.result.split(',')[1];
-                        const blobInfo = blobCache.create(id, file, base64);
-                        blobCache.add(blobInfo);
-
-                        /* call the callback and populate the Title field with the file name */
-                        cb(blobInfo.blobUri(), {
-                            title: file.name
-                        });
-                    });
-                    reader.readAsDataURL(file);
-                });
-                input.click();
-            },
-            content_style: 'body { font-family:Helvetica,Arial,sans-serif; font-size:16px }'
-        };
-
-        if (KTThemeMode.getMode() === "dark") {
-            options["skin"] = "oxide-dark";
-            options["content_css"] = "dark";
-        }
-
-        tinymce.init(options);
-        // dropzone
-        const id = "#kt_dropzonejs_example_2";
-        const dropzone = document.querySelector(id);
-        var previewNode = dropzone.querySelector(".dropzone-item");
-        previewNode.id = "";
-        var previewTemplate = previewNode.parentNode.innerHTML;
-        previewNode.parentNode.removeChild(previewNode);
-
-        var myDropzone = new Dropzone(id, { // Make the whole body a dropzone
-            url: "https://keenthemes.com/scripts/void.php", // Set the url for your upload script location
-            parallelUploads: 20,
-            paramName: "file",
-            acceptedFiles: 'image/*',
-            previewTemplate: previewTemplate,
-            maxFilesize: 1, // Max filesize in MB
-            autoQueue: false, // Make sure the files aren't queued until manually added
-            previewsContainer: id + " .dropzone-items", // Define the container to display the previews
-            clickable: id +
-                " .dropzone-select" // Define the element that should be used as click trigger to select files.
-        });
-
-        myDropzone.on("addedfile", function(file) {
-            // Hookup the start button
-            file.previewElement.querySelector(id + " .dropzone-start").onclick = function() {
-                myDropzone.enqueueFile(file);
+            xhr.upload.onprogress = function(e) {
+                progress(e.loaded / e.total * 100);
             };
-            const dropzoneItems = dropzone.querySelectorAll('.dropzone-item');
-            dropzoneItems.forEach(dropzoneItem => {
-                dropzoneItem.style.display = '';
-            });
-            dropzone.querySelector('.dropzone-upload').style.display = "inline-block";
-            dropzone.querySelector('.dropzone-remove-all').style.display = "inline-block";
-        });
 
-        // Update the total progress bar
-        myDropzone.on("totaluploadprogress", function(progress) {
-            const progressBars = dropzone.querySelectorAll('.progress-bar');
-            progressBars.forEach(progressBar => {
-                progressBar.style.width = progress + "%";
-            });
-        });
+            xhr.onload = function() {
+                var json;
 
-        myDropzone.on("sending", function(file) {
-            // Show the total progress bar when upload starts
-            const progressBars = dropzone.querySelectorAll('.progress-bar');
-            progressBars.forEach(progressBar => {
-                progressBar.style.opacity = "1";
-            });
-            // And disable the start button
-            file.previewElement.querySelector(id + " .dropzone-start").setAttribute("disabled", "disabled");
-        });
+                if (xhr.status === 403) {
+                    failure('HTTP Error: ' + xhr.status);
+                    return;
+                }
 
-        // Hide the total progress bar when nothing's uploading anymore
-        myDropzone.on("complete", function(progress) {
-            const progressBars = dropzone.querySelectorAll('.dz-complete');
+                if (xhr.status < 200 || xhr.status >= 300) {
+                    failure('HTTP Error: ' + xhr.status);
+                    return;
+                }
 
-            setTimeout(function() {
-                progressBars.forEach(progressBar => {
-                    progressBar.querySelector('.progress-bar').style.opacity = "0";
-                    progressBar.querySelector('.progress').style.opacity = "0";
-                    progressBar.querySelector('.dropzone-start').style.opacity = "0";
-                });
-            }, 300);
-        });
+                json = JSON.parse(xhr.responseText);
 
-        // Setup the buttons for all transfers
-        dropzone.querySelector(".dropzone-upload").addEventListener('click', function() {
-            myDropzone.enqueueFiles(myDropzone.getFilesWithStatus(Dropzone.ADDED));
-        });
+                if (!json || typeof json.location != 'string') {
+                    failure('Invalid JSON: ' + xhr.responseText);
+                    return;
+                }
 
-        // Setup the button for remove all files
-        dropzone.querySelector(".dropzone-remove-all").addEventListener('click', function() {
-            dropzone.querySelector('.dropzone-upload').style.display = "none";
-            dropzone.querySelector('.dropzone-remove-all').style.display = "none";
-            myDropzone.removeAllFiles(true);
-        });
+                success(json.location);
+            };
 
-        // On all files completed upload
-        myDropzone.on("queuecomplete", function(progress) {
-            const uploadIcons = dropzone.querySelectorAll('.dropzone-upload');
-            uploadIcons.forEach(uploadIcon => {
-                uploadIcon.style.display = "none";
-            });
-        });
+            xhr.onerror = function() {
+                failure('Image upload failed due to a XHR Transport error. Code: ' + xhr.status);
+            };
+            xhr.send(formData);
+        };
+        $(function() {
 
-        // On all files removed
-        myDropzone.on("removedfile", function(file) {
-            if (myDropzone.files.length < 1) {
-                dropzone.querySelector('.dropzone-upload').style.display = "none";
-                dropzone.querySelector('.dropzone-remove-all').style.display = "none";
+            var editor;
+
+            var options = {
+                selector: "#content",
+                height: "480",
+                menubar: false,
+                image_title: true,
+                toolbar: ["styleselect fontselect fontsizeselect",
+                    "undo redo | bold italic | link image | alignleft aligncenter alignright alignjustify",
+                    "bullist numlist | outdent indent | blockquote subscript superscript | advlist | autolink | lists charmap | code | preview "
+                ],
+                plugins: "advlist autolink link image lists charmap preview code",
+                // file_picker_callback: (cb, value, meta) => {
+                //     console.log(cb, value, meta)
+                //     const input = document.createElement('input');
+                //     input.setAttribute('type', 'file');
+                //     input.setAttribute('accept', 'image/*');
+
+                //     input.addEventListener('change', (e) => {
+                //         const file = e.target.files[0];
+
+                //         const reader = new FileReader();
+                //         reader.addEventListener('load', () => {
+                //             /*
+                //               Note: Now we need to register the blob in TinyMCEs image blob
+                //               registry. In the next release this part hopefully won't be
+                //               necessary, as we are looking to handle it internally.
+                //             */
+                //             const id = 'blobid' + (new Date()).getTime();
+                //             const blobCache = tinymce.activeEditor.editorUpload.blobCache;
+                //             const base64 = reader.result.split(',')[1];
+                //             const blobInfo = blobCache.create(id, file, base64);
+                //             blobCache.add(blobInfo);
+
+                //             /* call the callback and populate the Title field with the file name */
+                //             cb(blobInfo.blobUri(), {
+                //                 title: file.name
+                //             });
+                //         });
+                //         reader.readAsDataURL(file);
+                //     });
+                //     input.click();
+                // },
+                images_upload_handler: example_image_upload_handler,
+                images_upload_credentials: true,
+                content_style: 'body { font-family:Helvetica,Arial,sans-serif; font-size:16px }'
+            };
+
+            if (KTThemeMode.getMode() === "dark") {
+                options["skin"] = "oxide-dark";
+                options["content_css"] = "dark";
             }
+
+            tinymce.init(options);
+            // dropzone
+            const id = "#kt_dropzonejs_example_2";
+            const dropzone = document.querySelector(id);
+            var previewNode = dropzone.querySelector(".dropzone-item");
+            previewNode.id = "";
+            var previewTemplate = previewNode.parentNode.innerHTML;
+            previewNode.parentNode.removeChild(previewNode);
+
+            var myDropzone = new Dropzone(id, {
+                url: "{{ route('news.thumbnail-upload') }}",
+                parallelUploads: 20,
+                paramName: "file",
+                acceptedFiles: 'image/*',
+                previewTemplate: previewTemplate,
+                headers: {
+                    'X-CSRF-TOKEN': `{{ csrf_token() }}`,
+                    'X-RAND-TOKEN': `{{ $rand }}`,
+                },
+                thumbnail(file, dataUrl) {
+                    if (file.previewElement) {
+                        file.previewElement.classList.remove("dz-file-preview");
+                        for (let thumbnailElement of file.previewElement.querySelectorAll(
+                                "[data-dz-thumbnail]"
+                            )) {
+                            thumbnailElement.alt = file.name;
+                            thumbnailElement.src = dataUrl;
+                        }
+
+                        return setTimeout(
+                            () => file.previewElement.classList.add("dz-image-preview"),
+                            1
+                        );
+                    }
+                },
+                maxFiles: 1,
+                maxFilesize: 1,
+                autoProcessQueue: false,
+                previewsContainer: id + " .dropzone-items",
+                clickable: id +
+                    " .dropzone-select"
+            });
+
+            myDropzone.on("addedfile", function(file) {
+                // Hookup the start button
+                file.previewElement.querySelector(id + " .dropzone-start").onclick = function() {
+                    myDropzone.enqueueFile(file);
+                };
+                const dropzoneItems = dropzone.querySelectorAll('.dropzone-item');
+                dropzoneItems.forEach(dropzoneItem => {
+                    dropzoneItem.style.display = '';
+                });
+            });
+
+            myDropzone.on("totaluploadprogress", function(progress) {
+                const progressBars = dropzone.querySelectorAll('.progress-bar');
+                progressBars.forEach(progressBar => {
+                    progressBar.style.width = progress + "%";
+                });
+            });
+
+            myDropzone.on("sending", function(file) {
+
+                const progressBars = dropzone.querySelectorAll('.progress-bar');
+                progressBars.forEach(progressBar => {
+                    progressBar.style.opacity = "1";
+                });
+
+                file.previewElement.querySelector(id + " .dropzone-start").setAttribute("disabled",
+                    "disabled");
+            });
+
+            myDropzone.on("complete", function(progress) {
+                const progressBars = dropzone.querySelectorAll('.dz-complete');
+
+                setTimeout(function() {
+                    progressBars.forEach(progressBar => {
+                        progressBar.querySelector('.progress-bar').style.opacity = "0";
+                        progressBar.querySelector('.progress').style.opacity = "0";
+                        progressBar.querySelector('.dropzone-start').style.opacity = "0";
+                    });
+                }, 300);
+            });
+
+            $('#submit').click(function(e) {
+                e.preventDefault();
+                e.stopPropagation();
+                let data = new FormData;
+                $('#create_news').serializeArray().map(function(field) {
+                    if (field.value != '') {
+                        data.append([`${field.name}`], field.value);
+                    }
+                });
+                data.append('content', tinymce.get('content').getContent());
+                if (myDropzone.files.length > 0) {
+                    myDropzone.processQueue();
+                }
+                sendXhr('POST', `{{ route('news.store') }}`, data);
+                // on controller if have same random integer move to untemporary file store and remove all content if have asset on temporary folder to main folder
+            });
         });
     </script>
 @endpush

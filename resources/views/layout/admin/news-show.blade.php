@@ -9,7 +9,7 @@
                             alt="{{ $news->photo }}">
                         <h5 class="card-title">{{ $news->title }}</h5>
                         <div class="separator my-3"></div>
-                        <p class="card-text">{{ $news->content }}</p>
+                        <p class="card-text">{!! $news->content !!}</p>
                     </div>
                     <div class="col-12 col-md-4 bg-opacity-50 bg-white rounded p-3 position-relative shadow-sm">
                         <p class="card-text text-capitalize">Ditulis pada {{ $news->updated_at }} oleh
@@ -76,7 +76,9 @@
             $('.first-comment').remove();
             $('#container_comment').append(`<div class="col-12">
                         <div class="text-gray-500">
+                        @auth
                             {{ Auth::user()->name ?? Auth::user()->email }}
+                        @endauth
                         </div>
                         <li class="d-flex align-items-center py-2">
                             <span class="bullet me-2"></span> ${comment}

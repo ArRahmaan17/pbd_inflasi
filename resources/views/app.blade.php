@@ -2024,6 +2024,35 @@
             overlayClass: "page-loader bg-opacity-75",
             message: '<div class="blockui-message text-grey-600"><span class="spinner-border text-grey-600"></span> Loading Data...</div>'
         });
+        toastr.options = {
+            "closeButton": false,
+            "debug": false,
+            "newestOnTop": true,
+            "progressBar": false,
+            "positionClass": "toastr-top-center",
+            "preventDuplicates": false,
+            "onclick": null,
+            "showDuration": "300",
+            "hideDuration": "1000",
+            "timeOut": "5000",
+            "extendedTimeOut": "1000",
+            "showEasing": "swing",
+            "hideEasing": "linear",
+            "showMethod": "fadeIn",
+            "hideMethod": "fadeOut"
+        };
+
+        function progressxhr(loading) {
+            toastr.info('Loading.....');
+        }
+
+        function failurexhr(message) {
+            toastr.error(message);
+        }
+
+        function successxhr(message) {
+            toastr.success(message);
+        }
 
         function blockUi() {
             blockUI.block();
@@ -2031,6 +2060,44 @@
 
         function releaseUi() {
             blockUI.release();
+        }
+
+        function sendXhr(type = 'GET', url, data) {
+            xhr = new XMLHttpRequest();
+            xhr.withCredentials = false;
+            xhr.open(type, url);
+
+            xhr.upload.onprogress = function(e) {
+                progressxhr(e.loaded / e.total * 100);
+            };
+
+            xhr.onload = function() {
+                var json;
+
+                if (xhr.status === 403) {
+                    failurexhr('HTTP Error: ' + xhr.status);
+                    return;
+                }
+
+                if (xhr.status < 200 || xhr.status >= 300) {
+                    failurexhr('HTTP Error: ' + xhr.status);
+                    return;
+                }
+
+                json = JSON.parse(xhr.responseText);
+
+                if (!json || typeof json.message != 'string') {
+                    failurexhr('Invalid JSON: ' + xhr.responseText);
+                    return;
+                }
+
+                successxhr(json.message);
+            };
+
+            xhr.onerror = function() {
+                failurexhr('Image upload failed due to a XHR Transport error. Code: ' + xhr.status);
+            };
+            xhr.send(data);
         }
         $(function() {
             KTApp.hidePageLoading();
