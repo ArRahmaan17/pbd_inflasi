@@ -23,6 +23,7 @@ Route::prefix('news')
         Route::get('/',  'index')->name('index');
         Route::get('/create',  'create')->name('create');
         Route::post('/store',  'store')->name('store');
+        Route::delete('/{slug?}/destroy',  'destroy')->name('destroy');
         Route::get('/load-limit',  'loadLimit')->name('load-limit');
         Route::get('/{slug?}',  'show')->name('show');
         Route::get('/{slug?}/edit',  'edit')->middleware(['auth'])->name('edit');

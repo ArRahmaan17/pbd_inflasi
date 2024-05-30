@@ -2102,6 +2102,7 @@
             xhr.onerror = function() {
                 failurexhr('Image upload failed due to a XHR Transport error. Code: ' + xhr.status);
             };
+            xhr.setRequestHeader('X-CSRF-TOKEN', `{{ csrf_token() }}`)
             xhr.send(data);
         }
         $(function() {
