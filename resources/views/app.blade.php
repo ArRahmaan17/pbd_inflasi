@@ -2034,7 +2034,7 @@
             "onclick": null,
             "showDuration": "300",
             "hideDuration": "1000",
-            "timeOut": "1500",
+            "timeOut": "3000",
             "extendedTimeOut": "1000",
             "showEasing": "swing",
             "hideEasing": "linear",
@@ -2043,7 +2043,7 @@
         };
 
         function progressxhr(loading) {
-            toastr.info('Loading.....');
+            toastr.info(`Loading ${loading}`);
         }
 
         function failurexhr(message) {
@@ -2074,6 +2074,11 @@
             xhr.onload = function() {
                 var json;
 
+                if (xhr.status === 422) {
+                    console.log(xhr)
+                    failurexhr('HTTP Error: ' + JSON.parse(xhr.response).message);
+                    return;
+                }
                 if (xhr.status === 403) {
                     failurexhr('HTTP Error: ' + xhr.status);
                     return;

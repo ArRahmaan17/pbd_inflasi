@@ -88,16 +88,16 @@ class NewsController extends Controller
      */
     public function store(Request $request)
     {
-        $request->validate([
-            'title' => 'required',
-            'content' => 'required',
-            'type' => 'required|in:pu_news,pu_announcement,pr_news,pr_announcement',
-        ]);
         DB::beginTransaction();
         try {
+            $request->validate([
+                'title' => 'required|unique:news,title',
+                'content' => 'required',
+                'type' => 'required|in:pu_news,pu_announcement,pr_news,pr_announcement',
+            ]);
             $data = $request->except('_token', 'rand');
             $data['slug'] = Str::of($data['title'])->slug('-');
-            $data['content'] = implode(env('APP_URL'), explode('../', implode('/', explode('/temp/', $data['content']))));
+            $data['content'] = implode($data['slug'] . $request->rand, explode($request->rand, implode(env('APP_URL') . '/', explode('../', implode('/', explode('/temp/', $data['content']))))));
             $data['user_id'] = auth()->user()->id;
             $data['regency_id'] = 1;
             if (Storage::disk('public_asset')->exists('/media/news/temp/thumbnail/' . $request->rand)) {
@@ -121,7 +121,7 @@ class NewsController extends Controller
             DB::commit();
         } catch (\Throwable $th) {
             DB::rollBack();
-            $response = ['message' => 'berita / pengumuman gagal di buat'];
+            $response = ['message' => $th->getMessage() ?? 'berita / pengumuman gagal di buat'];
             $status = 422;
         }
         return response()->json($response, $status);

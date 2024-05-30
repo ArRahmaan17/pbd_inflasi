@@ -18,11 +18,11 @@
                 </div>
                 <div class="row justify-content-between">
                     <div class="col-12 col-md-8 mb-5 mb-sm-0">
-                        <img src="{{ asset($news->photo) }}" style="max-height: 300px; object-fit:contain"
-                            class="card-img-top" alt="{{ $news->photo }}">
+                        <img src="{{ env('APP_URL') . '/assets/' . $news->photo }}"
+                            style="max-height: 300px; object-fit:contain" class="card-img-top" alt="{{ $news->photo }}">
                         <h5 class="card-title">{{ $news->title }}</h5>
                         <div class="separator my-3"></div>
-                        <p class="card-text">{!! $news->content !!}</p>
+                        <p class="card-text px-3">{!! $news->content !!}</p>
                     </div>
                     <div class="col-12 col-md-4 bg-opacity-50 bg-white rounded p-3 position-relative shadow-sm">
                         <p class="card-text text-capitalize">Ditulis pada {{ $news->updated_at }} oleh
@@ -38,6 +38,9 @@
                                     </div>
                                     <li class="d-flex align-items-center py-2">
                                         <span class="bullet me-2"></span> {{ $comment->comment }}
+                                    </li>
+                                    <li class="d-flex align-items-center py-2">
+                                        <span class="bullet me-2"></span> test
                                     </li>
                                 </div>
                             @empty

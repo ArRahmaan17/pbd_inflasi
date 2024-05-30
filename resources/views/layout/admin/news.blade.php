@@ -30,7 +30,7 @@
                             ${element.type == 'pu_news' || element.type == 'pr_news'  ? '<i class="fas fa-rss text-gray-100"></i>': '<i class="fas fa-bullhorn text-gray-100"></i>'}
                         </div>
                     </div>
-                    <img src="{{ env('APP_URL') }}/${element.photo}"
+                    <img src="{{ env('APP_URL') }}/assets/${element.photo}"
                         class="card-img-top" alt="${element.photo}">
                     <div class="card-body text-truncate py-1">
                         ${element.title}
